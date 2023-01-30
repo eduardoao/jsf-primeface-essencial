@@ -3,14 +3,14 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
-	<groupId>com.algaworks</groupId>
+	<groupId>com.eaocorp</groupId>
 	<artifactId>jsf-primefaces</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>0.0.2-SNAPSHOT</version>
 
 	<packaging>war</packaging>
 
 	<name>jsf-primefaces</name>
-	<description>Curso JSF e PrimeFaces Essencial</description>
+	<description>JSF e PrimeFaces</description>
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
