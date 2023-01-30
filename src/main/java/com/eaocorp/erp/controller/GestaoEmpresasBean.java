@@ -1,4 +1,4 @@
-package com.algaworks.erp.controller;
+package com.eaocorp.erp.controller;
 
 import java.io.Serializable;
 import java.util.List;
@@ -7,8 +7,8 @@ import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 
-import com.algaworks.erp.model.Empresa;
-import com.algaworks.erp.repository.Empresas;
+import com.eaocorp.erp.model.Empresa;
+import com.eaocorp.erp.repository.Empresas;
 
 @Named
 @ViewScoped

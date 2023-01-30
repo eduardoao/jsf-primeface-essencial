@@ -4,12 +4,12 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>com.algaworks</groupId>
-	<artifactId>curso-jsf-e-primefaces-essencial</artifactId>
+	<artifactId>jsf-primefaces</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 
 	<packaging>war</packaging>
 
-	<name>curso-jsf-e-primefaces-essencial</name>
+	<name>jsf-primefaces</name>
 	<description>Curso JSF e PrimeFaces Essencial</description>
 
 	<properties>

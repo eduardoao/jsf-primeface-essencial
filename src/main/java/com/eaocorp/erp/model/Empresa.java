@@ -1,4 +1,4 @@
-package com.algaworks.erp.model;
+package com.eaocorp.erp.model;
 
 import java.io.Serializable;
 import java.math.BigDecimal;

@@ -1,4 +1,4 @@
-package com.algaworks.erp.model;
+package com.eaocorp.erp.model;
 
 public enum TipoEmpresa {
 	

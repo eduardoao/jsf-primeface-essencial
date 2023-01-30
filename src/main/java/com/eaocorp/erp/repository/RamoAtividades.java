@@ -1,6 +1,4 @@
-package com.algaworks.erp.repository;
-
-import com.algaworks.erp.model.RamoAtividade;
+package com.eaocorp.erp.repository;
 
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
@@ -8,6 +6,8 @@ import javax.persistence.TypedQuery;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
+
+import com.eaocorp.erp.model.RamoAtividade;
 
 import java.io.Serializable;
 import java.util.List;

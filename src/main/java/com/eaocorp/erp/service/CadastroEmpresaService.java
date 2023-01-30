@@ -1,12 +1,12 @@
-package com.algaworks.erp.service;
+package com.eaocorp.erp.service;
 
 import java.io.Serializable;
 
 import javax.inject.Inject;
 
-import com.algaworks.erp.model.Empresa;
-import com.algaworks.erp.repository.Empresas;
-import com.algaworks.erp.util.Transacional;
+import com.eaocorp.erp.model.Empresa;
+import com.eaocorp.erp.repository.Empresas;
+import com.eaocorp.erp.util.Transacional;
 
 public class CadastroEmpresaService implements Serializable {
 
