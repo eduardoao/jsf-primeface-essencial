@@ -4,18 +4,54 @@
 	xmlns:f="http://xmlns.jcp.org/jsf/core"
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-	template="WEB-INF/template/Layout.xhtml"
-	>
+	template="WEB-INF/template/Layout.xhtml">
 
 	<ui:define name="titulo">
 		Cadastro Empresas
 	</ui:define>
 
 	<ui:define name="conteudo">
+
+		<f:metadata>
+			<f:viewAction action="#{gestaoEmpresasBean.todasEmpresas}" />
+		</f:metadata>
 		<h:form>
+
+			<p:toolbar>
+				<p:toolbarGroup>
+
+					<p:inputText placeholder="Digite o termo para a pesquisa" size="30"></p:inputText>
+
+					<i class="pi pi-bars px-2" />
+
+					<p:commandButton type="button" value="Pesquisar"
+						icon="pi pi-search" styleClass="ui-button-info" />
+
+				</p:toolbarGroup>
+
+				<p:toolbarGroup >
+
+					<p:commandButton type="button" value="Nova" icon="pi pi-file"
+						styleClass="ui-button-success" />
+
+					<p:commandButton type="button" value="Editar"
+						icon="pi pi-file-edit" styleClass="ui-button-warning" />
+
+					<p:commandButton type="button" value="Excluir" icon="pi pi-trash"
+						styleClass="ui-button-danger" />
+
+					<i class="pi pi-bars px-2" />
+
+					<p:commandButton type="button" value="Exportar para o Excel"
+						icon="pi pi-file-export" styleClass="ui-button-secondary" />
+				</p:toolbarGroup>
+			</p:toolbar>
+
+			<p:spacer height="20px"></p:spacer>
+
 			<p:dataTable value="#{gestaoEmpresasBean.listaEmpresas}"
 				var="empresa" emptyMessage="Nenhuma informação a ser exibida"
-				paginator="true" rows="1" paginatorPosition="bottom">
+				paginator="true" rows="2" paginatorPosition="bottom">
 				<p:column headerText="Razão social" sortBy="#{empresa.razaoSocial}">
 					<h:outputText value="#{empresa.razaoSocial}" />
 				</p:column>
