@@ -2,79 +2,63 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
-
 	<groupId>com.eaocorp</groupId>
 	<artifactId>jsf-primefaces</artifactId>
 	<version>0.0.2-SNAPSHOT</version>
-
 	<packaging>war</packaging>
-
 	<name>jsf-primefaces</name>
 	<description>JSF e PrimeFaces</description>
-
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 	</properties>
-
 	<dependencies>
-	
 		<!-- API, java.xml.bind module -->
 		<dependency>
 			<groupId>jakarta.xml.bind</groupId>
 			<artifactId>jakarta.xml.bind-api</artifactId>
 			<version>2.3.2</version>
 		</dependency>
-
 		<!-- Runtime, com.sun.xml.bind module -->
 		<dependency>
 			<groupId>org.glassfish.jaxb</groupId>
 			<artifactId>jaxb-runtime</artifactId>
 			<version>2.3.2</version>
 		</dependency>
-	
-	
 		<dependency>
 			<groupId>org.jboss.weld.servlet</groupId>
 			<artifactId>weld-servlet</artifactId>
 			<version>2.4.0.Final</version>
 			<scope>compile</scope>
 		</dependency>
-
 		<dependency>
 			<groupId>org.glassfish</groupId>
 			<artifactId>javax.faces</artifactId>
 			<version>2.2.14</version>
 			<scope>compile</scope>
 		</dependency>
-
 		<dependency>
 			<groupId>org.primefaces</groupId>
 			<artifactId>primefaces</artifactId>
 			<version>12.0.0</version>
 		</dependency>
-
-
 		<dependency>
 			<groupId>javax.servlet</groupId>
 			<artifactId>javax.servlet-api</artifactId>
 			<version>3.1.0</version>
 			<scope>provided</scope>
 		</dependency>
-
 		<dependency>
 			<groupId>org.hibernate</groupId>
 			<artifactId>hibernate-validator</artifactId>
 			<version>5.3.2.Final</version>
 			<scope>compile</scope>
 		</dependency>
-
 		<dependency>
 			<groupId>org.hibernate</groupId>
 			<artifactId>hibernate-core</artifactId>
 			<version>5.2.4.Final</version>
 			<scope>compile</scope>
 		</dependency>
-
 		<dependency>
 			<groupId>mysql</groupId>
 			<artifactId>mysql-connector-java</artifactId>
@@ -82,9 +66,13 @@
 			<scope>compile</scope>
 		</dependency>
 	</dependencies>
-
 	<build>
 		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-war-plugin</artifactId>
+				<version>3.3.1</version>
+			</plugin>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
