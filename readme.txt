@@ -1,3 +1,8 @@
+docker build -t eduardooliveira/tomcat-server:1.0 .
+&& docker run -p 8383:8080 -it eduardooliveira/tomcat-server:1.0
+
+
+
 version: '3'
 
 services:
@@ -40,3 +45,6 @@ services:
       MYSQL_PASSWORD: jsfprimefaces
 volumes:
   dbdata:
+
+#volumes:
+    #  - ./target/jsf-primefaces-0.0.2-SNAPSHOT.war:/usr/local/tomcat/webapps/jsf-primefaces-0.0.2-SNAPSHOT.war
