@@ -20,38 +20,43 @@
 			<p:toolbar>
 				<p:toolbarGroup>
 
-					<p:inputText placeholder="Digite o termo para a pesquisa" size="30"></p:inputText>
+					<p:inputText placeholder="Digite o termo para a pesquisa" size="30"
+						value="#{gestaoEmpresasBean.termoPesquisa}"></p:inputText>
 
 					<i class="pi pi-bars px-2" />
 
-					<p:commandButton type="button" value="Pesquisar"
-						icon="pi pi-search" styleClass="ui-button-info" />
+					<p:commandButton  value="Pesquisar"
+						icon="pi pi-search" styleClass="ui-button-info"
+						actionListener="#{gestaoEmpresasBean.pesquisar}" 
+						update="empresasDataTable" />
 
 				</p:toolbarGroup>
 
-				<p:toolbarGroup >
+				<p:toolbarGroup>
 
-					<p:commandButton type="button" value="Nova" icon="pi pi-file"
+					<p:commandButton  value="Nova" icon="pi pi-file"
+						onclick="PF('empresaDialogWidgetVar').show()"
 						styleClass="ui-button-success" />
 
-					<p:commandButton type="button" value="Editar"
+					<p:commandButton  value="Editar"
 						icon="pi pi-file-edit" styleClass="ui-button-warning" />
 
-					<p:commandButton type="button" value="Excluir" icon="pi pi-trash"
+					<p:commandButton  value="Excluir" icon="pi pi-trash"
 						styleClass="ui-button-danger" />
 
 					<i class="pi pi-bars px-2" />
 
-					<p:commandButton type="button" value="Exportar para o Excel"
+					<p:commandButton  value="Exportar para o Excel"
 						icon="pi pi-file-export" styleClass="ui-button-secondary" />
 				</p:toolbarGroup>
 			</p:toolbar>
 
 			<p:spacer height="20px"></p:spacer>
 
-			<p:dataTable value="#{gestaoEmpresasBean.listaEmpresas}"
-				var="empresa" emptyMessage="Nenhuma informação a ser exibida"
-				paginator="true" rows="2" paginatorPosition="bottom">
+			<p:dataTable id="empresasDataTable"
+				value="#{gestaoEmpresasBean.listaEmpresas}" var="empresa"
+				emptyMessage="Nenhuma informação a ser exibida" paginator="true"
+				rows="2" paginatorPosition="bottom">
 				<p:column headerText="Razão social" sortBy="#{empresa.razaoSocial}">
 					<h:outputText value="#{empresa.razaoSocial}" />
 				</p:column>
@@ -68,6 +73,16 @@
 					<h:outputText value="#{empresa.ramoAtividade.descricao}" />
 				</p:column>
 			</p:dataTable>
+
+
+			<p:dialog header="Nova Empresa" widgetVar="empresaDialogWidgetVar"
+				modal="true" resizable="false" closeOnEscape="true">
+
+				<p:commandButton type="button" value="Teste"
+					styleClass="ui-button-secondary" />
+			</p:dialog>
+
+
 		</h:form>
 	</ui:define>
 

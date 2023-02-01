@@ -4,7 +4,8 @@ body {
 	font-size: 12px;
 	font-family: Arial, Helvetica, sans-serif;
 	margin: 0px;
-	font-weight: normal
+	font-weight: normal;
+	background-color: #d6dbe2;
 }
 
 header {

@@ -1,4 +1,6 @@
-FROM maven:3.5.3-jdk-8 as builder
+FROM java:8
+FROM maven:alpine as builder
+
 COPY . /usr/src/mymaven
 WORKDIR /usr/src/mymaven
 
