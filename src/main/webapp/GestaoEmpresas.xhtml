@@ -17,6 +17,12 @@
 		</f:metadata>
 		<h:form>
 
+			
+			<p:messages id="messages" showDetail="true" closable="true">
+				<p:autoUpdate />
+				<p:effect type="drop" event="load" delay="1100" />
+			</p:messages>
+
 			<p:toolbar>
 				<p:toolbarGroup>
 
@@ -25,28 +31,28 @@
 
 					<i class="pi pi-bars px-2" />
 
-					<p:commandButton  value="Pesquisar"
-						icon="pi pi-search" styleClass="ui-button-info"
-						actionListener="#{gestaoEmpresasBean.pesquisar}" 
+					<p:commandButton value="Pesquisar" icon="pi pi-search"
+						styleClass="ui-button-info"
+						actionListener="#{gestaoEmpresasBean.pesquisar}"
 						update="empresasDataTable" />
 
 				</p:toolbarGroup>
 
 				<p:toolbarGroup>
 
-					<p:commandButton  value="Nova" icon="pi pi-file"
+					<p:commandButton value="Nova" icon="pi pi-file"
 						onclick="PF('empresaDialogWidgetVar').show()"
 						styleClass="ui-button-success" />
 
-					<p:commandButton  value="Editar"
-						icon="pi pi-file-edit" styleClass="ui-button-warning" />
+					<p:commandButton value="Editar" icon="pi pi-file-edit"
+						styleClass="ui-button-warning" />
 
-					<p:commandButton  value="Excluir" icon="pi pi-trash"
+					<p:commandButton value="Excluir" icon="pi pi-trash"
 						styleClass="ui-button-danger" />
 
 					<i class="pi pi-bars px-2" />
 
-					<p:commandButton  value="Exportar para o Excel"
+					<p:commandButton value="Exportar para o Excel"
 						icon="pi pi-file-export" styleClass="ui-button-secondary" />
 				</p:toolbarGroup>
 			</p:toolbar>
