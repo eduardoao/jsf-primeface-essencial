@@ -22,3 +22,6 @@ docker build -t eduardooliveira/tomcat-server:1.0 .
 		</properties>
 	</persistence-unit>
 </persistence>
+
+
+Perfil - https://blog.matheuscastiglioni.com.br/trabalhando-com-diferentes-perfis-no-maven/
