@@ -67,6 +67,15 @@
 		</dependency>
 	</dependencies>
 	<build>
+		<finalName>jsf-primefaces</finalName>
+
+		<resources>
+			<resource>
+				<directory>${basedir}/src/main/resources</directory>
+				<filtering>true</filtering>
+			</resource>
+		</resources>
+
 		<plugins>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
@@ -82,6 +91,32 @@
 					<target>1.8</target>
 				</configuration>
 			</plugin>
+
 		</plugins>
 	</build>
+
+	<!-- Profiles start here -->
+	<profiles>
+		<!-- Development environment @ my desktop -->
+		<profile>
+			<id>dev</id>
+			<activation>
+				<activeByDefault>true</activeByDefault>
+			</activation>
+			<properties>
+				<db.senha>jsfprimefaces</db.senha>
+				<db.url>localhost</db.url>
+			</properties>
+		</profile>
+
+		<!-- Production environment @ production server -->
+		<profile>
+			<id>prod</id>
+			<properties>
+				<db.senha>jsfprimefaces</db.senha>
+				<db.url>db</db.url>
+			</properties>
+		</profile>
+
+	</profiles>
 </project>

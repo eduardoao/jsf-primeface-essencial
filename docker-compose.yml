@@ -1,24 +1,15 @@
 version: '3'
 
 services:
-
   web:
      container_name: web
      networks:
       - employee-mysql
      depends_on:
-       - db
-     links:
-       - db
-     build:     
-       dockerfile: Dockerfile      
+       - db    
+     build: . 
      ports:
        - '8080:8080' 
-     environment:      
-      MYSQL_ROOT_PASSWORD: jsfprimefaces
-      MYSQL_DATABASE: jsfprimefaces
-      DATABASE_HOST: db
-     
   db:
     image: mysql:5.7
     container_name: db    
@@ -47,8 +38,7 @@ services:
       - 8081:80 
 
     networks:
-      - employee-mysql
- 
+      - employee-mysql 
        
 volumes:
   dbdata:
