@@ -27,4 +27,6 @@ docker build -t eduardooliveira/tomcat-server:1.0 .
 Perfil - https://blog.matheuscastiglioni.com.br/trabalhando-com-diferentes-perfis-no-maven/
 Responsiva - https://www.primefaces.org/showcase-v8/ui/misc/responsive.xhtml
 https://www.primefaces.org/showcase/ui/panel/flexGrid.xhtml?jfwid=24d8d
+https://www.primefaces.org/primeflex/alignitems
+https://www.primefaces.org/primeflex/
 
