@@ -24,20 +24,19 @@
 			</p:messages>
 
 			<p:toolbar>
-				<p:toolbarGroup>
 
-					<p:inputText placeholder="Digite o termo para a pesquisa" size="58"
-						value="#{gestaoEmpresasBean.termoPesquisa}"></p:inputText>
+				<div class="container">
+					<div class="col-md-12">
 
-					<i class="pi pi-bars px-2" />
+						<p:toolbarGroup>
 
+							<p:inputText placeholder="Digite aqui um termo para pesquisa..."
+								value="#{gestaoEmpresasBean.termoPesquisa}" />
 
+						</p:toolbarGroup>
 
-				</p:toolbarGroup>
+						<p:toolbarGroup>
 
-				<p:toolbarGroup>
-					<div class="container">
-						<div class="col-md-12">
 							<div class="btn-group row" role="group" aria-label="button group">
 
 								<p:commandButton value="Pesquisar" icon="pi pi-search"
@@ -59,9 +58,10 @@
 								<p:commandButton value="Excel" icon="pi pi-file-export"
 									styleClass="ui-button-secondary col-md-2" />
 							</div>
-						</div>
+						</p:toolbarGroup>
+
 					</div>
-				</p:toolbarGroup>
+				</div>
 			</p:toolbar>
 
 
