@@ -3,46 +3,61 @@ package com.eaocorp.erp.controller;
 import java.io.Serializable;
 import java.util.List;
 
+import javax.faces.convert.Converter;
 import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 
 import com.eaocorp.erp.model.Empresa;
+import com.eaocorp.erp.model.RamoAtividade;
+import com.eaocorp.erp.model.TipoEmpresa;
 import com.eaocorp.erp.repository.Empresas;
+import com.eaocorp.erp.repository.RamoAtividades;
 import com.eaocorp.erp.util.FacesMessages;
 
 @Named
 @ViewScoped
 public class GestaoEmpresasBean implements Serializable {
 
-    private static final long serialVersionUID = 1L;
-    
-    @Inject
-    private Empresas empresas;
-    
-    private List<Empresa> listaEmpresas;
-    
-    @Inject
-    private FacesMessages messages;
-    
-    private String termoPesquisa;
-    
-    public void pesquisar() {
-    	 listaEmpresas = empresas.pesquisar(termoPesquisa);
-         
-         if (listaEmpresas.isEmpty()) {
-             messages.info("Sua consulta não retornou registros.");
-         }
-    	
-    }
-    
-    public void todasEmpresas() {
-        listaEmpresas = empresas.todas();
-    }
-    
-    public List<Empresa> getListaEmpresas() {
-        return listaEmpresas;
-    }
+	private static final long serialVersionUID = 1L;
+
+	@Inject
+	private Empresas empresas;
+
+	private List<Empresa> listaEmpresas;
+
+	@Inject
+	private FacesMessages messages;
+
+	@Inject
+	private RamoAtividades ramoAtividades;
+
+	private String termoPesquisa;
+
+	private Converter ramoAtividadeConverter;
+
+	private Empresa empresa;
+
+	public void prepararNovaEmpresa() {
+		empresa = new Empresa();
+	}
+
+	public void pesquisar() {
+		listaEmpresas = empresas.pesquisar(termoPesquisa);
+
+		if (listaEmpresas.isEmpty()) {
+			messages.info("Sua consulta não retornou registros.");
+		}
+
+	}
+
+	public void todasEmpresas() {
+		listaEmpresas = empresas.todas();
+	}
+
+	public List<Empresa> getListaEmpresas() {
+		return listaEmpresas;
+	}
 
 	public String getTermoPesquisa() {
 		return termoPesquisa;
@@ -50,5 +65,30 @@ public class GestaoEmpresasBean implements Serializable {
 
 	public void setTermoPesquisa(String termoPesquisa) {
 		this.termoPesquisa = termoPesquisa;
+	}
+
+	public TipoEmpresa[] getTiposEmpresa() {
+		return TipoEmpresa.values();
+	}
+
+	public Converter getRamoAtividadeConverter() {
+		return ramoAtividadeConverter;
+	}
+
+	public Empresa getEmpresa() {
+		return empresa;
+	}
+
+	public void salvar() {
+		System.out.print(empresa);
+
+	}
+
+	public List<RamoAtividade> completarRamoAtividade(String termo) {
+		List<RamoAtividade> listaRamoAtividades = ramoAtividades.pesquisar(termo);
+
+		ramoAtividadeConverter = new RamoAtividadeConverter(listaRamoAtividades);
+
+		return listaRamoAtividades;
 	}
 }
