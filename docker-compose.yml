@@ -10,6 +10,7 @@ services:
      build: . 
      ports:
        - '8080:8080' 
+     
   db:
     image: mysql:5.7
     container_name: db    
@@ -22,7 +23,7 @@ services:
       - dbdata:/var/lib/mysql 
 
     networks:
-      - employee-mysql   
+      - employee-mysql     
 
   phpmyadmin:
     image: phpmyadmin/phpmyadmin
@@ -39,7 +40,7 @@ services:
 
     networks:
       - employee-mysql 
-       
+         
 volumes:
   dbdata:
 

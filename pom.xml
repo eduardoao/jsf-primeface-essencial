@@ -65,10 +65,11 @@
 			<version>6.0.5</version>
 			<scope>compile</scope>
 		</dependency>
+		
 	</dependencies>
+
 	<build>
 		<finalName>jsf-primefaces</finalName>
-
 		<resources>
 			<resource>
 				<directory>${basedir}/src/main/resources</directory>

@@ -7,7 +7,9 @@
 	template="WEB-INF/template/Layout.xhtml">
 
 	<ui:define name="titulo">
-		Cadastro Empresas
+		<div class="card">
+			<div class="p-3">Cadastro Empresas</div>
+		</div>
 	</ui:define>
 
 	<ui:define name="conteudo">
@@ -17,78 +19,70 @@
 		</f:metadata>
 		<h:form>
 
-
 			<p:messages id="messages" showDetail="true" closable="true">
 				<p:autoUpdate />
 				<p:effect type="drop" event="load" delay="1100" />
 			</p:messages>
 
-			<p:toolbar>
+			<p:spacer height="20px"></p:spacer>
 
-				<div class="container">
-					<div class="col-md-12">
+			<div class="card">
+				<p:spacer height="10px" />
+				<div class="field grid formulario">
+					<div class="col-12 md:col-10">
+						<p:inputText placeholder="Digite aqui um termo para pesquisa..."
+							value="#{gestaoEmpresasBean.termoPesquisa}"
+							styleClass="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full" />
+					</div>
 
-						<p:toolbarGroup>
+					<p:spacer height="10px"></p:spacer>
 
-							<p:inputText placeholder="Digite aqui um termo para pesquisa..."
-								value="#{gestaoEmpresasBean.termoPesquisa}" />
+					<div class="col-12 md:col-10">
+						<p:commandButton value="Pesquisar" icon="pi pi-search"
+							styleClass="ui-button-info box"
+							actionListener="#{gestaoEmpresasBean.pesquisar}"
+							update="empresasDataTable" />
 
-						</p:toolbarGroup>
+						<p:commandButton value="Nova" icon="pi pi-file"
+							onclick="PF('empresaDialogWidgetVar').show()"
+							styleClass="ui-button-success box" />
 
-						<p:toolbarGroup>
+						<p:commandButton value="Editar" icon="pi pi-file-edit"
+							styleClass="ui-button-warning box" />
 
-							<div class="btn-group row" role="group" aria-label="button group">
+						<p:commandButton value="Excluir" icon="pi pi-trash"
+							styleClass="ui-button-danger box" />
 
-								<p:commandButton value="Pesquisar" icon="pi pi-search"
-									styleClass="ui-button-info col-md-3"
-									actionListener="#{gestaoEmpresasBean.pesquisar}"
-									update="empresasDataTable" />
-
-
-								<p:commandButton value="Nova" icon="pi pi-file"
-									onclick="PF('empresaDialogWidgetVar').show()"
-									styleClass="ui-button-success col-md-2" />
-
-								<p:commandButton value="Editar" icon="pi pi-file-edit"
-									styleClass="ui-button-warning col-md-2" />
-
-								<p:commandButton value="Excluir" icon="pi pi-trash"
-									styleClass="ui-button-danger col-md-2" />
-
-								<p:commandButton value="Excel" icon="pi pi-file-export"
-									styleClass="ui-button-secondary col-md-2" />
-							</div>
-						</p:toolbarGroup>
-
+						<p:commandButton value="Excel" icon="pi pi-file-export"
+							styleClass="ui-button-secondary box" />
 					</div>
 				</div>
-			</p:toolbar>
-
+			</div>
 
 			<p:spacer height="20px"></p:spacer>
 
-			<p:dataTable id="empresasDataTable"
-				value="#{gestaoEmpresasBean.listaEmpresas}" var="empresa"
-				emptyMessage="Nenhuma informação a ser exibida" paginator="true"
-				rows="2" paginatorPosition="bottom" class="table">
-				<p:column headerText="Razão social" sortBy="#{empresa.razaoSocial}">
-					<h:outputText value="#{empresa.razaoSocial}" />
-				</p:column>
+			<div class="card">
+				<p:dataTable id="empresasDataTable"
+					value="#{gestaoEmpresasBean.listaEmpresas}" var="empresa"
+					emptyMessage="Nenhuma informação a ser exibida" paginator="true"
+					rows="2" paginatorPosition="bottom" class="table">
+					<p:column headerText="Razão social" sortBy="#{empresa.razaoSocial}">
+						<h:outputText value="#{empresa.razaoSocial}" />
+					</p:column>
 
-				<p:column headerText="Nome fantasia">
-					<h:outputText value="#{empresa.nomeFantasia}" />
-				</p:column>
+					<p:column headerText="Nome fantasia">
+						<h:outputText value="#{empresa.nomeFantasia}" />
+					</p:column>
 
-				<p:column headerText="Tipo empresa">
-					<h:outputText value="#{empresa.tipo}" />
-				</p:column>
+					<p:column headerText="Tipo empresa">
+						<h:outputText value="#{empresa.tipo}" />
+					</p:column>
 
-				<p:column headerText="Ramo atividade">
-					<h:outputText value="#{empresa.ramoAtividade.descricao}" />
-				</p:column>
-			</p:dataTable>
-
-
+					<p:column headerText="Ramo atividade">
+						<h:outputText value="#{empresa.ramoAtividade.descricao}" />
+					</p:column>
+				</p:dataTable>
+			</div>
 			<p:dialog header="Nova Empresa" widgetVar="empresaDialogWidgetVar"
 				modal="true" resizable="false" closeOnEscape="true">
 

@@ -2,29 +2,112 @@ docker build -t eduardooliveira/tomcat-server:1.0 .
 && docker run -p 8383:8080 -it eduardooliveira/tomcat-server:1.0
 
 
-
-<?xml version="1.0" encoding="UTF-8" ?>
-<persistence version="2.1" xmlns="http://xmlns.jcp.org/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
-	<persistence-unit name="EaoCorpPU">
-		<properties>
-			<property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/cursojsfprimefaces?useSSL=false" />
-			
-			<property name="javax.persistence.jdbc.user" value="root" />
-			<property name="javax.persistence.jdbc.password" value="jsfprimefaces" />
-			<property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver" />
-
-			<property name="javax.persistence.schema-generation.database.action" value="drop-and-create" />
-			<property name="javax.persistence.schema-generation.create-source" value="metadata" />			
-			<property name="javax.persistence.sql-load-script-source" value="META-INF/sql/dados-iniciais.sql"  />
-
-			<property name="hibernate.show_sql" value="true" />
-			<property name="hibernate.format_sql" value="true" />
-		</properties>
-	</persistence-unit>
-</persistence>
+docker-compose down --remove-orphans
 
 
-Perfil - https://blog.matheuscastiglioni.com.br/trabalhando-com-diferentes-perfis-no-maven/
-Responsiva - https://www.primefaces.org/showcase-v8/ui/misc/responsive.xhtml
-https://www.primefaces.org/showcase/ui/panel/flexGrid.xhtml?jfwid=24d8d
 
+version: '3'
+
+services:
+  db:
+    image: mysql:5.7
+    container_name: db
+    environment:
+      MYSQL_ROOT_PASSWORD: jsfprimefaces
+      #MYSQL_DATABASE: cursojsfprimefaces
+      #MYSQL_USER: root
+      #MYSQL_PASSWORD: jsfprimefaces
+    ports:
+      - "3306:3306"
+    volumes:
+      - dbdata:/var/lib/mysql
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    container_name: pma
+    links:
+      - db
+    environment:
+      PMA_HOST: db
+      PMA_PORT: 3306
+      PMA_ARBITRARY: 1
+    restart: always
+    ports:
+      - 8081:80
+  web:
+    depends_on:
+      - db
+    image: maven:3.5.3-jdk-8   
+    build:     
+      dockerfile: Dockerfile
+    ports:
+      - '8082:8080'
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: jsfprimefaces
+      #MYSQL_USER: testuser
+      MYSQL_PASSWORD: jsfprimefaces
+volumes:
+  dbdata:
+
+
+
+
+
+
+
+    version: '3'
+
+services:
+  db:
+    image: mysql:5.7
+    container_name: db    
+    environment:
+      MYSQL_ROOT_PASSWORD: jsfprimefaces
+      MYSQL_DATABASE: cursojsfprimefaces
+      #MYSQL_USER: root
+      #MYSQL_PASSWORD: jsfprimefaces
+    ports:
+      - "3306:3306"
+    volumes:
+      - dbdata:/var/lib/mysql 
+
+    networks:
+      - employee-mysql  
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    container_name: pma
+    links:
+      - db
+    environment:
+      PMA_HOST: db
+      PMA_PORT: 3306
+      PMA_ARBITRARY: 1
+    restart: always
+    ports:
+      - 8081:80 
+
+    networks:
+      - employee-mysql
+
+  web:
+     container_name: web
+
+     networks:
+      - employee-mysql
+
+     depends_on:
+       - db
+     build:     
+       dockerfile: Dockerfile      
+     ports:
+       - '8080:8080'
+     environment:      
+       MYSQL_ROOT_PASSWORD: jsfprimefaces
+       MYSQL_DATABASE: jsfprimefaces
+       
+volumes:
+  dbdata:
+
+networks:
+  employee-mysql: 
