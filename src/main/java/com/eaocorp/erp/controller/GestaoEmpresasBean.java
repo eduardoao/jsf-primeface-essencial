@@ -13,6 +13,7 @@ import com.eaocorp.erp.model.RamoAtividade;
 import com.eaocorp.erp.model.TipoEmpresa;
 import com.eaocorp.erp.repository.Empresas;
 import com.eaocorp.erp.repository.RamoAtividades;
+import com.eaocorp.erp.service.CadastroEmpresaService;
 import com.eaocorp.erp.util.FacesMessages;
 
 @Named
@@ -30,17 +31,22 @@ public class GestaoEmpresasBean implements Serializable {
 	private FacesMessages messages;
 
 	@Inject
-	private RamoAtividades ramoAtividades;
+	private RamoAtividades ramoAtividades;	
+
+	@Inject
+	private CadastroEmpresaService cadastroEmpresaService;
 
 	private String termoPesquisa;
 
 	private Converter ramoAtividadeConverter;
 
 	private Empresa empresa;
+	
 
 	public void prepararNovaEmpresa() {
 		empresa = new Empresa();
 	}
+	
 
 	public void pesquisar() {
 		listaEmpresas = empresas.pesquisar(termoPesquisa);
@@ -79,8 +85,20 @@ public class GestaoEmpresasBean implements Serializable {
 		return empresa;
 	}
 
+	public boolean jaHouvePesquisa() {
+		return termoPesquisa != null && !"".equals(termoPesquisa);
+	}
+	
 	public void salvar() {
-		System.out.print(empresa);
+		cadastroEmpresaService.salvar(empresa);		
+		if (jaHouvePesquisa()) {
+			pesquisar();
+		}
+		
+		todasEmpresas();
+		
+		messages.info("Empresa cadastrada com sucesso!");
+		
 
 	}
 

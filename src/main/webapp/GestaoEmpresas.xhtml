@@ -18,7 +18,8 @@
 			<f:viewAction action="#{gestaoEmpresasBean.todasEmpresas}" />
 			<f:viewAction action="#{gestaoEmpresasBean.prepararNovaEmpresa}" />
 		</f:metadata>
-		<h:form>
+
+		<h:form id="formCadastro">
 
 			<p:messages id="messages" showDetail="true" closable="true">
 				<p:autoUpdate />
@@ -30,9 +31,9 @@
 			<div class="card">
 				<p:spacer height="10px" />
 				<div class="field grid formulario">
-				
+
 					<div class="col-12 md:col-10">
-						<p:inputText placeholder="Digite aqui um termo para pesquisa..."
+						<p:inputText id="termoPesquisa" placeholder="Digite aqui um termo para pesquisa..."
 							value="#{gestaoEmpresasBean.termoPesquisa}"
 							styleClass="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full" />
 					</div>
@@ -41,14 +42,14 @@
 
 					<div class="col-12 md:col-10">
 						<p:commandButton value="Pesquisar" icon="pi pi-search"
-							styleClass="ui-button-info box"
-							actionListener="#{gestaoEmpresasBean.pesquisar}"
-							update="empresasDataTable" />
+							styleClass="ui-button-info box"							
+							update="empresasDataTable" process="@this termoPesquisa" />
 
 						<p:commandButton value="Nova" icon="pi pi-file"
-							onclick="PF('empresaDialogWidgetVar').show()"
+							oncomplete="PF('empresaDialogWidgetVar').show()"
+							
 							styleClass="ui-button-success box"
-							 />
+							update="empresaDialog" process="@this"/>
 
 						<p:commandButton value="Editar" icon="pi pi-file-edit"
 							styleClass="ui-button-warning box" />
@@ -68,7 +69,7 @@
 				<p:dataTable id="empresasDataTable"
 					value="#{gestaoEmpresasBean.listaEmpresas}" var="empresa"
 					emptyMessage="Nenhuma informação a ser exibida" paginator="true"
-					rows="2" paginatorPosition="bottom" class="table">
+					rows="5" paginatorPosition="bottom" class="table">
 					<p:column headerText="Razão social" sortBy="#{empresa.razaoSocial}">
 						<h:outputText value="#{empresa.razaoSocial}" />
 					</p:column>
@@ -89,18 +90,22 @@
 
 			<p:dialog id="empresaDialog" header="Nova Empresa"
 				widgetVar="empresaDialogWidgetVar" modal="true" resizable="false"
-				closeOnEscape="true" width="50%"
-				rendered="#{gestaoEmpresasBean.empresa ne null}">
+				closeOnEscape="true" width="50%">
 
-				<div class="formgrid grid card ui-fluid">
+				<p:panel id="empresaPanelGrid"
+					styleClass="formgrid grid card ui-fluid"
+					>
+
 					<div class="field col-12 md:col-12">
 						<p:outputLabel value="Razão Social" for="input-razao-social" />
-						<p:inputText id="input-razao-social" styleClass="w-full" />
+						<p:inputText id="input-razao-social" styleClass="w-full"
+							value="#{gestaoEmpresasBean.empresa.razaoSocial}" />
 					</div>
 
 					<div class="field col-12 md:col-12">
 						<p:outputLabel value="Nome Fantasia" for="input-nome-fantasia" />
-						<p:inputText id="input-nome-fantasia" styleClass="w-full" />
+						<p:inputText id="input-nome-fantasia" styleClass="w-full"
+							value="#{gestaoEmpresasBean.empresa.nomeFantasia}" />
 					</div>
 
 					<div class="field col-12 md:col-12">
@@ -147,13 +152,13 @@
 						<div>
 							<p:commandButton value="Salvar"
 								actionListener="#{gestaoEmpresasBean.salvar}"
-								update="empresasDataTable"
+								update="empresasDataTable empresaPanelGrid"
 								oncomplete="PF('empresaDialogWidgetVar').hide()"
 								process="empresaDialog" />
 						</div>
 					</div>
-
-				</div>
+					
+				</p:panel>
 			</p:dialog>
 
 		</h:form>
