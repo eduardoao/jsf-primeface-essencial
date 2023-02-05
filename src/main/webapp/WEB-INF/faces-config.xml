@@ -8,6 +8,9 @@
 		<locale-config>
 			<default-locale>pt_BR</default-locale>
 		</locale-config>
+		
+		<message-bundle>com.eaocorp.erp.Messages</message-bundle>
+		
 	</application>
 
 </faces-config>

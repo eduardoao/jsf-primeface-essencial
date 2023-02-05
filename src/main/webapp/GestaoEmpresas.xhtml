@@ -90,7 +90,9 @@
 
 			<p:dialog id="empresaDialog" header="Nova Empresa"
 				widgetVar="empresaDialogWidgetVar" modal="true" resizable="false"
-				closeOnEscape="true" width="50%">
+				closeOnEscape="true" width="35%"  >
+
+				<p:messages id="empresaMessages"/>
 
 				<p:panel id="empresaPanelGrid"
 					styleClass="formgrid grid card ui-fluid"
@@ -99,7 +101,7 @@
 					<div class="field col-12 md:col-12">
 						<p:outputLabel value="Razão Social" for="input-razao-social" />
 						<p:inputText id="input-razao-social" styleClass="w-full"
-							value="#{gestaoEmpresasBean.empresa.razaoSocial}" />
+							value="#{gestaoEmpresasBean.empresa.razaoSocial}"  />
 					</div>
 
 					<div class="field col-12 md:col-12">
@@ -152,8 +154,8 @@
 						<div>
 							<p:commandButton value="Salvar"
 								actionListener="#{gestaoEmpresasBean.salvar}"
-								update="empresasDataTable empresaPanelGrid"
-								oncomplete="PF('empresaDialogWidgetVar').hide()"
+								update="empresasDataTable empresaPanelGrid empresaMessages"
+								oncomplete="if(!args.validationFailed)PF('empresaDialogWidgetVar').hide()"
 								process="empresaDialog" />
 						</div>
 					</div>
