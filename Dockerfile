@@ -1,4 +1,4 @@
-FROM java:8
+#FROM java:8
 FROM maven:alpine as builder
 
 COPY . /usr/src/mymaven

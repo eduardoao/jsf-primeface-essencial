@@ -1,6 +1,7 @@
 package com.eaocorp.erp.controller;
 
 import java.io.Serializable;
+import java.util.Arrays;
 import java.util.List;
 
 import javax.faces.convert.Converter;
@@ -15,6 +16,9 @@ import com.eaocorp.erp.repository.Empresas;
 import com.eaocorp.erp.repository.RamoAtividades;
 import com.eaocorp.erp.service.CadastroEmpresaService;
 import com.eaocorp.erp.util.FacesMessages;
+
+import org.primefaces.PrimeFaces;
+
 
 @Named
 @ViewScoped
@@ -31,7 +35,7 @@ public class GestaoEmpresasBean implements Serializable {
 	private FacesMessages messages;
 
 	@Inject
-	private RamoAtividades ramoAtividades;	
+	private RamoAtividades ramoAtividades;
 
 	@Inject
 	private CadastroEmpresaService cadastroEmpresaService;
@@ -41,12 +45,10 @@ public class GestaoEmpresasBean implements Serializable {
 	private Converter ramoAtividadeConverter;
 
 	private Empresa empresa;
-	
 
 	public void prepararNovaEmpresa() {
 		empresa = new Empresa();
 	}
-	
 
 	public void pesquisar() {
 		listaEmpresas = empresas.pesquisar(termoPesquisa);
@@ -88,16 +90,20 @@ public class GestaoEmpresasBean implements Serializable {
 	public boolean jaHouvePesquisa() {
 		return termoPesquisa != null && !"".equals(termoPesquisa);
 	}
-	
+
 	public void salvar() {
-		cadastroEmpresaService.salvar(empresa);		
+		cadastroEmpresaService.salvar(empresa);
 		if (jaHouvePesquisa()) {
 			pesquisar();
+		} else {
+			todasEmpresas();
 		}
+
+		messages.info("Empresa salva com sucesso!");
+
+		PrimeFaces instance = PrimeFaces.current();
+		instance.ajax().update(Arrays.asList("formCadastro:empresasDataTable", "formCadastro:messages"));
 		
-		todasEmpresas();
-		
-		messages.info("Empresa cadastrada com sucesso!");
 		
 
 	}
