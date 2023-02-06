@@ -31,7 +31,7 @@ jobs:
 
       - name: Tag and push a container image
         id: tag-and-push-image
-        run: |
-          docker pull oraclelinux:8-slim
-          docker tag "oraclelinux:8-slim" "${{ steps.get-ocir-repository.outputs.repo_path }}:8-slim"
-          docker push "${{ steps.get-ocir-repository.outputs.repo_path }}:8-slim"
+       # run: |
+       #   docker pull oraclelinux:8-slim
+       #   docker tag "oraclelinux:8-slim:8-slim"
+       #   docker push "${{ steps.get-ocir-repository.outputs.repo_path }}:8-slim"
