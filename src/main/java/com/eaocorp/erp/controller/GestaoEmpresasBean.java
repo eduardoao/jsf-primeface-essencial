@@ -19,7 +19,6 @@ import com.eaocorp.erp.util.FacesMessages;
 
 import org.primefaces.PrimeFaces;
 
-
 @Named
 @ViewScoped
 public class GestaoEmpresasBean implements Serializable {
@@ -86,6 +85,10 @@ public class GestaoEmpresasBean implements Serializable {
 	public Empresa getEmpresa() {
 		return empresa;
 	}
+	
+	public void setEmpresa(Empresa empresa) {
+		this.empresa = empresa;
+	}
 
 	public boolean jaHouvePesquisa() {
 		return termoPesquisa != null && !"".equals(termoPesquisa);
@@ -101,11 +104,10 @@ public class GestaoEmpresasBean implements Serializable {
 
 		messages.info("Empresa salva com sucesso!");
 
+		// Não funcionou #Issue 001
 		PrimeFaces instance = PrimeFaces.current();
 		instance.ajax().update(Arrays.asList("formCadastro:empresasDataTable", "formCadastro:messages"));
-		
-		
-
+		// Não funcionou #Issue 001
 	}
 
 	public List<RamoAtividade> completarRamoAtividade(String termo) {
@@ -115,4 +117,9 @@ public class GestaoEmpresasBean implements Serializable {
 
 		return listaRamoAtividades;
 	}
+
+	 public boolean isEmpresaSeleciona() {
+	        return empresa != null && empresa.getId() != null;
+	    }
+
 }

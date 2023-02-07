@@ -30,6 +30,7 @@
 
 			<div class="card">
 				<p:spacer height="10px" />
+
 				<div class="field grid formulario">
 
 					<div class="col-12 md:col-10">
@@ -42,25 +43,34 @@
 					<p:spacer height="10px"></p:spacer>
 
 					<div class="col-12 md:col-10">
-						<p:commandButton value="Pesquisar" icon="pi pi-search"
-							styleClass="ui-button-info box" update="empresasDataTable"
-							actionListener="#{gestaoEmpresasBean.pesquisar}"
-							process="@this termoPesquisa" />
+					
+						<p:panel id="toolbar">
+							<p:commandButton value="Pesquisar" icon="pi pi-search"
+								styleClass="ui-button-info box" update="empresasDataTable"
+								actionListener="#{gestaoEmpresasBean.pesquisar}"
+								process="@this termoPesquisa" />
 
-						<p:commandButton value="Nova" icon="pi pi-file"
-							actionListener="#{gestaoEmpresasBean.prepararNovaEmpresa}"
-							oncomplete="PF('empresaDialogWidgetVar').show()"
-							styleClass="ui-button-success box" update="empresaDialog"
-							process="@this" />
+							<p:commandButton value="Nova" icon="pi pi-file"
+								actionListener="#{gestaoEmpresasBean.prepararNovaEmpresa}"
+								oncomplete="PF('empresaDialogWidgetVar').show()"
+								styleClass="ui-button-success box" update="empresaDialog"
+								process="@this">
 
-						<p:commandButton value="Editar" icon="pi pi-file-edit"
-							styleClass="ui-button-warning box" />
+								<p:resetInput target="empresaDialog"></p:resetInput>
 
-						<p:commandButton value="Excluir" icon="pi pi-trash"
-							styleClass="ui-button-danger box" />
+							</p:commandButton>
 
-						<p:commandButton value="Excel" icon="pi pi-file-export"
-							styleClass="ui-button-secondary box" />
+							<p:commandButton value="Editar" icon="pi pi-file-edit"
+								styleClass="ui-button-warning box"								
+								disabled="#{not gestaoEmpresasBean.empresaSeleciona}"/>
+
+							<p:commandButton value="Excluir" icon="pi pi-trash"
+								styleClass="ui-button-danger box"
+								disabled="#{not gestaoEmpresasBean.empresaSeleciona}"/>
+
+							<p:commandButton value="Excel" icon="pi pi-file-export"
+								styleClass="ui-button-secondary box" />
+						</p:panel>
 					</div>
 				</div>
 			</div>
@@ -68,10 +78,18 @@
 			<p:spacer height="20px"></p:spacer>
 
 			<div class="card">
+
 				<p:dataTable id="empresasDataTable"
 					value="#{gestaoEmpresasBean.listaEmpresas}" var="empresa"
 					emptyMessage="Nenhuma informação a ser exibida" paginator="true"
-					rows="5" paginatorPosition="bottom" class="table">
+					rows="5" paginatorPosition="bottom" class="table"
+					selectionMode="single" selection="#{gestaoEmpresasBean.empresa}"
+					rowKey="#{empresa.id}">
+					
+					<p:ajax event="rowSelect" update="formCadastro:toolbar"></p:ajax>
+					
+					<p:ajax event="rowUnselect" update="formCadastro:toolbar"></p:ajax>
+
 					<p:column headerText="Razão social" sortBy="#{empresa.razaoSocial}">
 						<h:outputText value="#{empresa.razaoSocial}" />
 					</p:column>
@@ -93,6 +111,8 @@
 			<p:dialog id="empresaDialog" header="Nova Empresa"
 				widgetVar="empresaDialogWidgetVar" modal="true" resizable="false"
 				closeOnEscape="true" width="35%">
+
+				<p:defaultCommand target="salvarCommandButton" scope="empresaDialog"></p:defaultCommand>
 
 				<p:messages id="empresaMessages" />
 
@@ -153,7 +173,7 @@
 
 					<div class="field col-12 md:col-12">
 						<div>
-							<p:commandButton value="Salvar"
+							<p:commandButton id="salvarCommandButton" value="Salvar"
 								actionListener="#{gestaoEmpresasBean.salvar}"
 								update="empresaPanelGrid empresaMessages"
 								oncomplete="if(!args.validationFailed) PF('empresaDialogWidgetVar').hide()"
