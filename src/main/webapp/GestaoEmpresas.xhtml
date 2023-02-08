@@ -79,11 +79,17 @@
 								update="messages empresasDataTable toolbar" process="@this"
 								disabled="#{not gestaoEmpresasBean.empresaSeleciona}">
 
-								 <p:confirm header="Confirmação" message="Deseja excluir a empresa selecionada?" icon="pi pi-info-circle"/>
+								<p:confirm header="Confirmação"
+									message="Deseja excluir a empresa selecionada?"
+									icon="pi pi-info-circle" />
 							</p:commandButton>
 
 							<p:commandButton value="Excel" icon="pi pi-file-export"
-								styleClass="ui-button-secondary box" />
+								styleClass="ui-button-secondary box" ajax="false">
+								
+								<p:dataExporter type="xls" target="empresasDataTable" fileName="Empresas" />
+
+							</p:commandButton>
 						</p:panel>
 					</div>
 				</div>

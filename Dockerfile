@@ -4,7 +4,7 @@ FROM maven:alpine as builder
 COPY . /usr/src/mymaven
 WORKDIR /usr/src/mymaven
 
-RUN mvn install package -P prod -f /usr/src/mymaven && mkdir /usr/src/wars/
+RUN mvn install package -P prod -f -X/usr/src/mymaven && mkdir /usr/src/wars/
 RUN find /usr/src/mymaven/ -iname '*.war' -exec cp {} /usr/src/wars/ \;
 
 FROM tomcat:9.0.48-jdk8-openjdk-buster
