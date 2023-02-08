@@ -16,7 +16,7 @@
 		rel="stylesheet"
 		integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD"
 		crossorigin="anonymous" />
-		
+
 </h:head>
 
 <h:body>
@@ -37,6 +37,21 @@
 	</div>
 
 	<footer> Curso online "JSF e PrimeFaces Essencial" </footer>
+
+
+	<p:confirmDialog global="true" showEffect="fade" hideEffect="fade"
+		widgetVar="confirmationDialog" responsive="true" width="350">
+
+		<h:form id="formConfirmDialogExcluir">
+			<p:commandButton value="Não" type="button"
+				styleClass="ui-confirmdialog-no ui-button-flat"
+				onclick="confirmationDialog.hide()" />
+			<p:commandButton value="Sim" type="button"
+				styleClass="ui-confirmdialog-yes" />
+		</h:form>
+		
+	</p:confirmDialog>
+
 
 </h:body>
 

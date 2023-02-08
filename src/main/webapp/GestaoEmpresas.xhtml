@@ -21,7 +21,6 @@
 
 		<h:form id="formCadastro">
 
-
 			<p:messages id="messages" showDetail="true" closable="true">
 				<p:effect type="drop" event="load" delay="1100" />
 				<p:autoUpdate />
@@ -73,12 +72,15 @@
 
 							</p:commandButton>
 
-						
+
 							<p:commandButton value="Excluir" icon="pi pi-trash"
 								styleClass="ui-button-danger box"
 								actionListener="#{gestaoEmpresasBean.excluir}"
 								update="messages empresasDataTable toolbar" process="@this"
-								disabled="#{not gestaoEmpresasBean.empresaSeleciona}" />
+								disabled="#{not gestaoEmpresasBean.empresaSeleciona}">
+
+								 <p:confirm header="Confirmação" message="Deseja excluir a empresa selecionada?" icon="pi pi-info-circle"/>
+							</p:commandButton>
 
 							<p:commandButton value="Excel" icon="pi pi-file-export"
 								styleClass="ui-button-secondary box" />
