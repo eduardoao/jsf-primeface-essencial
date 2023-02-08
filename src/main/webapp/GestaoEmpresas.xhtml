@@ -21,10 +21,12 @@
 
 		<h:form id="formCadastro">
 
+			
 			<p:messages id="messages" showDetail="true" closable="true">
 				<p:effect type="drop" event="load" delay="1100" />
 				<p:autoUpdate />
 			</p:messages>
+			 
 
 			<p:spacer height="20px"></p:spacer>
 
@@ -43,7 +45,7 @@
 					<p:spacer height="10px"></p:spacer>
 
 					<div class="col-12 md:col-10">
-					
+
 						<p:panel id="toolbar">
 							<p:commandButton value="Pesquisar" icon="pi pi-search"
 								styleClass="ui-button-info box" update="empresasDataTable"
@@ -61,12 +63,19 @@
 							</p:commandButton>
 
 							<p:commandButton value="Editar" icon="pi pi-file-edit"
-								styleClass="ui-button-warning box"								
-								disabled="#{not gestaoEmpresasBean.empresaSeleciona}"/>
+								styleClass="ui-button-warning box"
+								disabled="#{not gestaoEmpresasBean.empresaSeleciona}"
+								actionListener="#{gestaoEmpresasBean.prepararEdicao}"
+								oncomplete="PF('empresaDialogWidgetVar').show()"
+								update="empresaDialog" process="@this">
+
+								<p:resetInput target="empresaDialog"></p:resetInput>
+
+							</p:commandButton>
 
 							<p:commandButton value="Excluir" icon="pi pi-trash"
 								styleClass="ui-button-danger box"
-								disabled="#{not gestaoEmpresasBean.empresaSeleciona}"/>
+								disabled="#{not gestaoEmpresasBean.empresaSeleciona}" />
 
 							<p:commandButton value="Excel" icon="pi pi-file-export"
 								styleClass="ui-button-secondary box" />
@@ -85,9 +94,9 @@
 					rows="5" paginatorPosition="bottom" class="table"
 					selectionMode="single" selection="#{gestaoEmpresasBean.empresa}"
 					rowKey="#{empresa.id}">
-					
+
 					<p:ajax event="rowSelect" update="formCadastro:toolbar"></p:ajax>
-					
+
 					<p:ajax event="rowUnselect" update="formCadastro:toolbar"></p:ajax>
 
 					<p:column headerText="Razão social" sortBy="#{empresa.razaoSocial}">
