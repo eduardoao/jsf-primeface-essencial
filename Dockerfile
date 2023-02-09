@@ -1,5 +1,6 @@
 #FROM java:8
-FROM maven:alpine as builder
+FROM maven:3.6.3-jdk-8-openj9 as builder 
+#maven:alpine as builder
 
 COPY . /usr/src/mymaven
 WORKDIR /usr/src/mymaven
