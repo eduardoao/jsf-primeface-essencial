@@ -1,16 +1,12 @@
-FROM maven AS build
+# Use an official Java runtime as the base image
+FROM openjdk:8-jdk-alpine as build
+
+# Copy the built artifact from the Maven build to the Docker image
+COPY target/jsf-primefaces.war /app/jsf-primefaces.war
+
+# Set the working directory
 WORKDIR /app
-COPY . .
-RUN mvn package -P prod -X -Dhttps.protocols=TLSv1.2
 
-
-COPY . /usr/src/mymaven
-WORKDIR /usr/src/mymaven
-
-RUN find ~/.m2  -name "*.lastUpdated" -exec grep -q "Could not transfer" {} \; -print -exec rm {} \;
-
-RUN mvn install package -P prod -f /usr/src/mymaven && mkdir /usr/src/wars/
-RUN find /usr/src/mymaven/ -iname '*.war' -exec cp {} /usr/src/wars/ \;
 
 FROM tomcat:9.0.48-jdk8-openjdk-buster
 LABEL Eduardo Oliveira
