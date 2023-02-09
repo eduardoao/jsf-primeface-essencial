@@ -48,6 +48,22 @@ public class GestaoEmpresasBean implements Serializable {
 	public void prepararNovaEmpresa() {
 		empresa = new Empresa();
 	}
+	
+	public void prepararEdicao( ) {
+		ramoAtividadeConverter = new RamoAtividadeConverter(Arrays.asList(empresa.getRamoAtividade()));
+		
+	}
+	
+	public void excluir () {
+		
+		cadastroEmpresaService.excluir(empresa);
+		empresa = null; 
+		
+		atualizarRegistros();
+		
+		messages.info("Empresa deletada com sucesso!");
+		
+	}
 
 	public void pesquisar() {
 		listaEmpresas = empresas.pesquisar(termoPesquisa);
@@ -96,11 +112,8 @@ public class GestaoEmpresasBean implements Serializable {
 
 	public void salvar() {
 		cadastroEmpresaService.salvar(empresa);
-		if (jaHouvePesquisa()) {
-			pesquisar();
-		} else {
-			todasEmpresas();
-		}
+		
+		atualizarRegistros();
 
 		messages.info("Empresa salva com sucesso!");
 
@@ -108,6 +121,14 @@ public class GestaoEmpresasBean implements Serializable {
 		PrimeFaces instance = PrimeFaces.current();
 		instance.ajax().update(Arrays.asList("formCadastro:empresasDataTable", "formCadastro:messages"));
 		// Não funcionou #Issue 001
+	}
+
+	private void atualizarRegistros() {
+		if (jaHouvePesquisa()) {
+			pesquisar();
+		} else {
+			todasEmpresas();
+		}
 	}
 
 	public List<RamoAtividade> completarRamoAtividade(String termo) {

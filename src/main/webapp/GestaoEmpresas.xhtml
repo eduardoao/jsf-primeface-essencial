@@ -26,6 +26,7 @@
 				<p:autoUpdate />
 			</p:messages>
 
+
 			<p:spacer height="20px"></p:spacer>
 
 			<div class="card">
@@ -43,7 +44,7 @@
 					<p:spacer height="10px"></p:spacer>
 
 					<div class="col-12 md:col-10">
-					
+
 						<p:panel id="toolbar">
 							<p:commandButton value="Pesquisar" icon="pi pi-search"
 								styleClass="ui-button-info box" update="empresasDataTable"
@@ -61,15 +62,34 @@
 							</p:commandButton>
 
 							<p:commandButton value="Editar" icon="pi pi-file-edit"
-								styleClass="ui-button-warning box"								
-								disabled="#{not gestaoEmpresasBean.empresaSeleciona}"/>
+								styleClass="ui-button-warning box"
+								disabled="#{not gestaoEmpresasBean.empresaSeleciona}"
+								actionListener="#{gestaoEmpresasBean.prepararEdicao}"
+								oncomplete="PF('empresaDialogWidgetVar').show()"
+								update="empresaDialog" process="@this">
+
+								<p:resetInput target="empresaDialog"></p:resetInput>
+
+							</p:commandButton>
+
 
 							<p:commandButton value="Excluir" icon="pi pi-trash"
 								styleClass="ui-button-danger box"
-								disabled="#{not gestaoEmpresasBean.empresaSeleciona}"/>
+								actionListener="#{gestaoEmpresasBean.excluir}"
+								update="messages empresasDataTable toolbar" process="@this"
+								disabled="#{not gestaoEmpresasBean.empresaSeleciona}">
+
+								<p:confirm header="Confirmação"
+									message="Deseja excluir a empresa selecionada?"
+									icon="pi pi-info-circle" />
+							</p:commandButton>
 
 							<p:commandButton value="Excel" icon="pi pi-file-export"
-								styleClass="ui-button-secondary box" />
+								styleClass="ui-button-secondary box" ajax="false">
+								
+								<p:dataExporter type="xls" target="empresasDataTable" fileName="Empresas" />
+
+							</p:commandButton>
 						</p:panel>
 					</div>
 				</div>
@@ -85,9 +105,9 @@
 					rows="5" paginatorPosition="bottom" class="table"
 					selectionMode="single" selection="#{gestaoEmpresasBean.empresa}"
 					rowKey="#{empresa.id}">
-					
+
 					<p:ajax event="rowSelect" update="formCadastro:toolbar"></p:ajax>
-					
+
 					<p:ajax event="rowUnselect" update="formCadastro:toolbar"></p:ajax>
 
 					<p:column headerText="Razão social" sortBy="#{empresa.razaoSocial}">

@@ -12,6 +12,12 @@
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 	</properties>
 	<dependencies>
+		<dependency>
+			<groupId>org.apache.poi</groupId>
+			<artifactId>poi</artifactId>
+			<version>3.15</version>
+			<scope>compile</scope>
+		</dependency>
 		<!-- API, java.xml.bind module -->
 		<dependency>
 			<groupId>jakarta.xml.bind</groupId>
@@ -65,9 +71,7 @@
 			<version>6.0.5</version>
 			<scope>compile</scope>
 		</dependency>
-		
 	</dependencies>
-
 	<build>
 		<finalName>jsf-primefaces</finalName>
 		<resources>
@@ -76,7 +80,6 @@
 				<filtering>true</filtering>
 			</resource>
 		</resources>
-
 		<plugins>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
@@ -92,10 +95,8 @@
 					<target>1.8</target>
 				</configuration>
 			</plugin>
-
 		</plugins>
 	</build>
-
 	<!-- Profiles start here -->
 	<profiles>
 		<!-- Development environment @ my desktop -->
@@ -109,7 +110,6 @@
 				<db.url>localhost</db.url>
 			</properties>
 		</profile>
-
 		<!-- Production environment @ production server -->
 		<profile>
 			<id>prod</id>
@@ -118,6 +118,5 @@
 				<db.url>db</db.url>
 			</properties>
 		</profile>
-
 	</profiles>
 </project>
