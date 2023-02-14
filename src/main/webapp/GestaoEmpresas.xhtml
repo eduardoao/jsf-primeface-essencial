@@ -29,6 +29,7 @@
 
 			<p:spacer height="20px"></p:spacer>
 
+
 			<div class="card">
 				<p:spacer height="10px" />
 
@@ -84,12 +85,15 @@
 									icon="pi pi-info-circle" />
 							</p:commandButton>
 
+							<!-- 
 							<p:commandButton value="Excel" icon="pi pi-file-export"
 								styleClass="ui-button-secondary box" ajax="false">
-								
-								<p:dataExporter type="xls" target="empresasDataTable" fileName="Empresas" />
 
+								<p:dataExporter type="xls" target="empresasDataTable"
+									fileName="Empresas" />
+									
 							</p:commandButton>
+							 -->
 						</p:panel>
 					</div>
 				</div>
@@ -97,8 +101,8 @@
 
 			<p:spacer height="20px"></p:spacer>
 
+			<!-- Tabela empresas -->
 			<div class="card">
-
 				<p:dataTable id="empresasDataTable"
 					value="#{gestaoEmpresasBean.listaEmpresas}" var="empresa"
 					emptyMessage="Nenhuma informação a ser exibida" paginator="true"
@@ -128,6 +132,8 @@
 				</p:dataTable>
 			</div>
 
+
+			<!-- Dialog -->
 			<p:dialog id="empresaDialog" header="Nova Empresa"
 				widgetVar="empresaDialogWidgetVar" modal="true" resizable="false"
 				closeOnEscape="true" width="35%">
@@ -205,6 +211,7 @@
 			</p:dialog>
 
 		</h:form>
+
 	</ui:define>
 
 </ui:composition>
