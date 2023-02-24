@@ -136,7 +136,7 @@
 			<properties>
 				<db.usuario>postest_user</db.usuario>
 				<db.senha>kJE5veAdF0H0tWsmLDHGn0N3FHfuAEoE</db.senha>
-				 <db.url>postgres://dpg-cfrpn2cgqg46pjo2eoi0-a.oregon-postgres.render.com:5432/postest</db.url>
+				 <db.url>postgres://dpg-cfrpn2cgqg46pjo2eoi0-a/postest</db.url>
 				<!--<db.url>postgres://postest_user:kJE5veAdF0H0tWsmLDHGn0N3FHfuAEoE@dpg-cfrpn2cgqg46pjo2eoi0-a/postest</db.url>-->			
 				<db.driver>org.postgresql.Driver</db.driver>
 			</properties>
