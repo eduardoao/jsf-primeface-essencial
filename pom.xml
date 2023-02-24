@@ -67,6 +67,15 @@
 			<version>6.0.5</version>
 			<scope>compile</scope>
 		</dependency>
+
+		<!-- https://mvnrepository.com/artifact/org.postgresql/postgresql -->
+		  <dependency>
+            <groupId>org.postgresql</groupId>
+            <artifactId>postgresql</artifactId>
+            <version>42.2.14</version>
+        </dependency>
+
+
 	</dependencies>
 	<build>
 		<finalName>jsf-primefaces</finalName>
@@ -95,24 +104,54 @@
 	</build>
 	<!-- Profiles start here -->
 	<profiles>
-		<!-- Development environment @ my desktop -->
+		<!-- Development environment @ my desktop mysql -->
 		<profile>
 			<id>dev</id>
+			<!-- <activation> <activeByDefault>true</activeByDefault> </activation> -->
+			<properties>
+				<db.usuario>root</db.usuario>
+				<db.senha>jsfprimefaces</db.senha>
+				<db.url>jdbc:mysql://localhost:3306/cursojsfprimefaces?useSSL=false</db.url>
+				<db.driver>com.mysql.jdbc.Driver</db.driver>
+			</properties>
+		</profile>
+
+		<!-- Development environment @ my desktop postgreSQL -->
+		<profile>
+			<id>dev-post</id>
 			<activation>
 				<activeByDefault>true</activeByDefault>
 			</activation>
 			<properties>
-				<db.senha>jsfprimefaces</db.senha>
-				<db.url>localhost</db.url>
+				<db.usuario>postgres</db.usuario>
+				<db.senha>Postgres2018!</db.senha>
+				<db.url>jdbc:postgresql://localhost:5432/cursojsfprimefaces</db.url>
+				<db.driver>org.postgresql.Driver</db.driver>
 			</properties>
 		</profile>
-		<!-- Production environment @ production server -->
-		<profile>
+
+		<!-- Production environment @ production server mysql -->
+		
+		<!-- <profile>
 			<id>prod</id>
 			<properties>
+				<db.usuario>root</db.usuario>
 				<db.senha>jsfprimefaces</db.senha>
-				<db.url>db</db.url>
+				<db.url>jdbc:mysql://db:3306/cursojsfprimefaces?useSSL=false</db.url>
+				<db.driver>com.mysql.jdbc.Driver</db.driver>
+			</properties>
+		</profile>-->
+		
+		<!-- Development environment @  Prod postgreSQL -->
+		<profile>
+			<id>prod</id>			
+			<properties>
+				<db.usuario>postest_user</db.usuario>
+				<db.senha>kJE5veAdF0H0tWsmLDHGn0N3FHfuAEoE</db.senha>
+				<db.url>postgres://postest_user:kJE5veAdF0H0tWsmLDHGn0N3FHfuAEoE@dpg-cfrpn2cgqg46pjo2eoi0-a/postest</db.url>
+				<db.driver>org.postgresql.Driver</db.driver>
 			</properties>
 		</profile>
+		
 	</profiles>
 </project>
