@@ -128,19 +128,7 @@
 				<db.url>jdbc:postgresql://localhost:5432/cursojsfprimefaces</db.url>
 				<db.driver>org.postgresql.Driver</db.driver>
 			</properties>
-		</profile>
-
-		<!-- Production environment @ production server mysql -->
-		
-		<!-- <profile>
-			<id>prod-mysql</id>
-			<properties>
-				<db.usuario>root</db.usuario>
-				<db.senha>jsfprimefaces</db.senha>
-				<db.url>jdbc:mysql://db:3306/cursojsfprimefaces?useSSL=false</db.url>
-				<db.driver>com.mysql.jdbc.Driver</db.driver>
-			</properties>
-		</profile>-->
+		</profile>		
 		
 		<!-- Development environment @  Prod postgreSQL -->
 		<profile>
@@ -152,6 +140,18 @@
 				<db.driver>org.postgresql.Driver</db.driver>
 			</properties>
 		</profile>
+		
+		<!-- Production environment @ production server mysql -->
+		
+		<!-- <profile>
+			<id>prod-mysql</id>
+			<properties>
+				<db.usuario>root</db.usuario>
+				<db.senha>jsfprimefaces</db.senha>
+				<db.url>jdbc:mysql://db:3306/cursojsfprimefaces?useSSL=false</db.url>
+				<db.driver>com.mysql.jdbc.Driver</db.driver>
+			</properties>
+		</profile>-->
 		
 	</profiles>
 </project>
