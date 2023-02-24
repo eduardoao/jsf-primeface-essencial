@@ -144,7 +144,7 @@
 		<!-- Production environment @ production server mysql -->
 		
 		<!-- <profile>
-			<id>prod</id>
+			<id>prod-mysql</id>
 			<properties>
 				<db.usuario>root</db.usuario>
 				<db.senha>jsfprimefaces</db.senha>
