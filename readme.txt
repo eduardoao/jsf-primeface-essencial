@@ -1,6 +1,7 @@
 docker build -t eduardooliveira/tomcat-server:1.0 .
 && docker run -p 8383:8080 -it eduardooliveira/tomcat-server:1.0
 
+docker run --name teste-postgres -e "POSTGRES_PASSWORD=kJE5veAdF0H0tWsmLDHGn0N3FHfuAEoE" -p 5432:5432 -v c:/PostgreSQL:/var/lib/postgresql/data -d postgres
 
 docker-compose down --remove-orphans
 
