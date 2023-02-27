@@ -124,7 +124,7 @@
 			</activation>
 			<properties>
 				<db.usuario>postgres</db.usuario>
-				<db.senha>PgAdmin2018!</db.senha>
+				<db.senha>Postgres2018!</db.senha>
 				<db.url>jdbc:postgresql://localhost:5432/cursojsfprimefaces</db.url>
 				<db.driver>org.postgresql.Driver</db.driver>
 			</properties>
